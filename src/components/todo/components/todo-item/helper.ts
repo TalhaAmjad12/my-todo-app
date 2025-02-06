@@ -1,22 +1,26 @@
+import {
+  updateListItem,
+  deleteItem,
+} from "../../../../lib/features/todo-list/TodoListSlice";
+
 export const onClickEditUpdateToggle = (setIsEditing, action) => {
   if (action === "edit") {
     return setIsEditing(true);
   } else return setIsEditing(false);
 };
 
-export const updateExistingListItem = (
-  updateTodoList,
-  currentItem,
-  editText
-) => {
-  updateTodoList((prevList) =>
-    prevList.map((item) =>
-      item.id === currentItem.id ? { ...currentItem, title: editText } : item
-    )
-  );
+export const updateExistingListItem = (dispatch, currentItem, editText) => {
+  const updatedListItem = {
+    id: currentItem.id,
+    title: editText,
+    completed: currentItem.completed,
+  };
+
+  console.log(updatedListItem);
+
+  dispatch(updateListItem(updatedListItem));
 };
 
-export const deleteListItem = (updateTodoList, currentItem) =>
-  updateTodoList((prevList) =>
-    prevList.filter((item) => item.id !== currentItem.id)
-  );
+export const deleteListItem = (currentItem, dispatch) => {
+  dispatch(deleteItem(currentItem.id));
+};

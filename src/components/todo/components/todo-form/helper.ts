@@ -1,15 +1,19 @@
-export function handleAddNewListItem(listItem, updateTodoList, setNewListItem) {
+import { addNewListItem } from "../../../../lib/features/todo-list/TodoListSlice";
+
+export function handleAddNewListItem(
+  todoListState,
+  listItem,
+  dispatch,
+  setNewListItem
+) {
   if (listItem === "") return alert("Please enter a task");
+  const newListItem = {
+    id: todoListState.length + 1,
+    title: listItem,
+    completed: "in-progress",
+  };
 
-  updateTodoList((prevList) => {
-    const newListItem = {
-      id: prevList.length + 1,
-      title: listItem,
-      completed: "in-progress",
-    };
-
-    return [...prevList, newListItem];
-  });
+  dispatch(addNewListItem(newListItem));
 
   setNewListItem("");
   return alert("Task added to ToDo List Successfully");

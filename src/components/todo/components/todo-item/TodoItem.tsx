@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   ListItem,
   TextField,
@@ -16,12 +17,10 @@ import {
   updateExistingListItem,
 } from "./helper";
 
-export default function TodoItem({
-  listItem,
-  updateTodoList,
-}: I_TodoItemProps) {
+export default function TodoItem({ listItem }: I_TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(listItem.title);
+  const dispatch = useDispatch();
 
   return (
     <ListItem key={listItem.id}>
@@ -34,7 +33,7 @@ export default function TodoItem({
           />
           <UpdateButton
             onClick={() => {
-              updateExistingListItem(updateTodoList, listItem, editText);
+              updateExistingListItem(dispatch, listItem, editText);
               onClickEditUpdateToggle(setIsEditing, "update");
             }}
           >
@@ -49,9 +48,7 @@ export default function TodoItem({
           >
             Edit
           </EditButton>
-          <DeleteButton
-            onClick={() => deleteListItem(updateTodoList, listItem)}
-          >
+          <DeleteButton onClick={() => deleteListItem(listItem, dispatch)}>
             Delete
           </DeleteButton>
         </>

@@ -18,6 +18,13 @@ const eslintConfig = [
   ),
   {
     rules: {
+      "no-param-reassign": [
+        "error",
+        {
+          props: true,
+          ignorePropertyModificationsFor: ["state"], // Allow state mutations in reducers
+        },
+      ],
       "no-else-return": "off",
       "no-alert": "off",
       "no-underscore-dangle": "off",

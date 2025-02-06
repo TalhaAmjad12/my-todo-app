@@ -1,19 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import TodoList from "./components/todo-list/TodoList";
 import TodoListForm from "./components/todo-form";
 import { TodoListBox } from "./styled";
 
 export default function Todo() {
-  const [todoList, setTodos] = useState([]);
+  const todoListState = useSelector(
+    (state: { todo: { todoListData: [] } }) => state.todo.todoListData
+  );
 
   return (
     <div>
       <TodoListBox>
-        <TodoList todoList={todoList} updateTodoList={setTodos} />
+        <TodoList todoList={todoListState} />
       </TodoListBox>
-      <TodoListForm updateTodoList={setTodos} />
+      <TodoListForm />
     </div>
   );
 }

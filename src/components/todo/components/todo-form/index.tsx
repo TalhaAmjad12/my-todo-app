@@ -1,11 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { TextField, AddNewListItemButton, BoxDiv } from "./styled";
-import { I_TodoFormProps } from "./types";
 import { handleAddNewListItem } from "./helper";
 
-export default function TodoListForm({ updateTodoList }: I_TodoFormProps) {
+export default function TodoListForm() {
+  const todoListState = useSelector(
+    (state: { todo: { todoListData: [] } }) => state.todo.todoListData
+  );
+  const dispatch = useDispatch();
   const [newListItem, setNewListItem] = useState("");
 
   return (
@@ -17,7 +21,12 @@ export default function TodoListForm({ updateTodoList }: I_TodoFormProps) {
       />
       <AddNewListItemButton
         onClick={() =>
-          handleAddNewListItem(newListItem, updateTodoList, setNewListItem)
+          handleAddNewListItem(
+            todoListState,
+            newListItem,
+            dispatch,
+            setNewListItem
+          )
         }
       >
         Add
