@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TodoListBox = styled.div`
+export const StyledTodoListBox = styled.div`
   height: 85vh;
   overflow-y: auto;
 `;

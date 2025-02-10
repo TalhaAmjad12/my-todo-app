@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  ListItem,
-  TextField,
-  TaskText,
-  EditButton,
-  UpdateButton,
-  DeleteButton,
+  StyledListItem,
+  StyledTextField,
+  StyledTaskText,
+  StyledEditButton,
+  StyledUpdateButton,
+  StyledDeleteButton,
 } from "./styled";
 import { I_TodoItemProps } from "./types";
 import {
@@ -23,36 +23,36 @@ export default function TodoItem({ listItem }: I_TodoItemProps) {
   const dispatch = useDispatch();
 
   return (
-    <ListItem key={listItem.id}>
+    <StyledListItem key={listItem.id}>
       {isEditing ? (
         <>
-          <TextField
+          <StyledTextField
             type="text"
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
           />
-          <UpdateButton
+          <StyledUpdateButton
             onClick={() => {
               updateExistingListItem(dispatch, listItem, editText);
               onClickEditUpdateToggle(setIsEditing, "update");
             }}
           >
             Update
-          </UpdateButton>
+          </StyledUpdateButton>
         </>
       ) : (
         <>
-          <TaskText completed={listItem.completed}>{listItem.title}</TaskText>
-          <EditButton
+          <StyledTaskText completed={listItem.completed}>{listItem.title}</StyledTaskText>
+          <StyledEditButton
             onClick={() => onClickEditUpdateToggle(setIsEditing, "edit")}
           >
             Edit
-          </EditButton>
-          <DeleteButton onClick={() => deleteListItem(listItem, dispatch)}>
+          </StyledEditButton>
+          <StyledDeleteButton onClick={() => deleteListItem(listItem, dispatch)}>
             Delete
-          </DeleteButton>
+          </StyledDeleteButton>
         </>
       )}
-    </ListItem>
+    </StyledListItem>
   );
 }

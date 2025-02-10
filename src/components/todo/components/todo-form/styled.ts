@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const BoxDiv = styled.div`
+export const StyledBoxDiv = styled.div`
   display: "flex";
   marginbottom: "1rem";
   padding: "10px";
   margin-top: 1rem;
 `;
 
-export const TextField = styled.input`
+export const StyledTextField = styled.input`
   flex-grow: 1;
   padding: 0.5rem;
   margin-right: 0.5rem;
@@ -16,7 +16,7 @@ export const TextField = styled.input`
   border-radius: 3px;
 `;
 
-export const AddNewListItemButton = styled.button`
+export const StyledAddNewListItemButton = styled.button`
   margin-left: 0.5rem;
   background: #4caf50;
   color: white;

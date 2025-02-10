@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TextField, AddNewListItemButton, BoxDiv } from "./styled";
+import { StyledTextField, StyledAddNewListItemButton, StyledBoxDiv } from "./styled";
 import { handleAddNewListItem } from "./helper";
 
 export default function TodoListForm() {
@@ -13,13 +13,13 @@ export default function TodoListForm() {
   const [newListItem, setNewListItem] = useState("");
 
   return (
-    <BoxDiv>
-      <TextField
+    <StyledBoxDiv>
+      <StyledTextField
         placeholder="Enter New List Item"
         value={newListItem}
         onChange={(e) => setNewListItem(e.target.value)}
       />
-      <AddNewListItemButton
+      <StyledAddNewListItemButton
         onClick={() =>
           handleAddNewListItem(
             todoListState,
@@ -30,7 +30,7 @@ export default function TodoListForm() {
         }
       >
         Add
-      </AddNewListItemButton>
-    </BoxDiv>
+      </StyledAddNewListItemButton>
+    </StyledBoxDiv>
   );
 }

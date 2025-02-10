@@ -2,9 +2,9 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
-import TodoList from "./components/todo-list/TodoList";
+import TodoList from "./components/todo-list";
 import TodoListForm from "./components/todo-form";
-import { TodoListBox } from "./styled";
+import { StyledTodoListBox } from "./styled";
 
 export default function Todo() {
   const todoListState = useSelector(
@@ -13,9 +13,9 @@ export default function Todo() {
 
   return (
     <div>
-      <TodoListBox>
+      <StyledTodoListBox>
         <TodoList todoList={todoListState} />
-      </TodoListBox>
+      </StyledTodoListBox>
       <TodoListForm />
     </div>
   );
