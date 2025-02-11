@@ -1,18 +1,23 @@
 "use client";
 
 import React from "react";
-import TodoItem from "../todo-item/TodoItem";
+import TodoItem from "../todo-item";
 import { I_TodoListProps } from "./types";
-import { UnorderedList } from "./styled";
+import { StyledUnorderedList } from "./styled";
 
 export default function TodoList({
   todoList,
   updateTodoList,
 }: I_TodoListProps) {
-  if (todoList.length === 0) return <h1>No data Found</h1>;
+  if (todoList.length === 0)
+    return (
+      <StyledUnorderedList>
+        <h1>No data Found</h1>
+      </StyledUnorderedList>
+    );
 
   return (
-    <UnorderedList>
+    <StyledUnorderedList>
       {todoList.map((todo) => {
         return (
           <TodoItem
@@ -22,6 +27,6 @@ export default function TodoList({
           />
         );
       })}
-    </UnorderedList>
+    </StyledUnorderedList>
   );
 }

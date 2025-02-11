@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
-export const UnorderedList = styled.ul`
+export const StyledUnorderedList = styled.ul`
   list-style-type: disc;
   padding: 0;
   margin: 0;
+  height: 85vh;
+  overflowy: auto;
 `;
