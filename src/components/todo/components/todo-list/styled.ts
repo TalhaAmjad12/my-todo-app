@@ -5,5 +5,5 @@ export const StyledUnorderedList = styled.ul`
   padding: 0;
   margin: 0;
   height: 85vh;
-  overflowy: auto;
+  overflow-y: auto;
 `;

@@ -1,34 +1,41 @@
-const DUMMY_DATA = [
-  {
-    id: 1,
-    title: "react js",
-    completed: "in-progress",
-  },
-  {
-    id: 2,
-    title: "Next js",
-    completed: "in-progress",
-  },
-  {
-    id: 3,
-    title: "Redux js",
-    completed: "in-progress",
-  },
-];
+import {
+  GET_TODOLIST_REQUEST,
+  GET_TODOLIST_SUCCESS,
+  GET_TODOLIST_FAILURE,
+} from "../../actions/actionTypes";
 
 const initialState = {
-  data: DUMMY_DATA,
-  isloading: false,
-  error: { messgae: "error message", isError: true },
+  data: [],
+  loading: false,
+  error: null,
 };
 
-function counterReducer(state = initialState, action) {
+const todoReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_TODO_LIST":
-      return state;
+    case GET_TODOLIST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null, // Reset error on new request
+      };
+
+    case GET_TODOLIST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload, // Update the todo list with the fetched data
+      };
+
+    case GET_TODOLIST_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload, // Set the error message
+      };
+
     default:
       return state;
   }
-}
+};
 
-export default counterReducer;
+export default todoReducer;
