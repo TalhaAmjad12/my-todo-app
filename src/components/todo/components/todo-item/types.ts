@@ -12,6 +12,7 @@ export type T_ListItem = {
   id: number;
   title: string;
   completed: string;
+  isProcessing: boolean;
 };
 
 export interface I_TodoItemProps {

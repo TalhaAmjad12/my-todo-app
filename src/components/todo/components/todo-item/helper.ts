@@ -15,8 +15,3 @@ export const updateExistingListItem = (
     )
   );
 };
-
-export const deleteListItem = (updateTodoList, currentItem) =>
-  updateTodoList((prevList) =>
-    prevList.filter((item) => item.id !== currentItem.id)
-  );

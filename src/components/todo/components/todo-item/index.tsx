@@ -10,11 +10,13 @@ import {
   StyledDeleteButton,
 } from "./styled";
 import { I_TodoItemProps } from "./types";
+import { onClickEditUpdateToggle } from "./helper";
+import { useDispatch } from "react-redux";
 import {
   deleteListItem,
-  onClickEditUpdateToggle,
-  updateExistingListItem,
-} from "./helper";
+  updateListItemById,
+} from "../../../../lib/reducers/todo/actions/todoActios";
+import CustomLoader from "../../../common/loader/index";
 
 export default function TodoItem({
   listItem,
@@ -22,6 +24,28 @@ export default function TodoItem({
 }: I_TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(listItem.title);
+  const dispatch = useDispatch();
+
+  const handleDeleteListItem = (id) => {
+    dispatch(deleteListItem(id));
+  };
+
+  const handleUpdate = () => {
+    const updatedItem = { ...listItem, title: editText || "" };
+
+    console.log(updatedItem);
+
+    dispatch(updateListItemById(updatedItem));
+  };
+
+  if (listItem.isProcessing)
+    return (
+      <StyledListItem key={listItem.id}>
+        <CustomLoader />
+      </StyledListItem>
+    );
+
+  console.log(listItem, "listItem");
 
   return (
     <StyledListItem key={listItem.id}>
@@ -34,7 +58,7 @@ export default function TodoItem({
           />
           <StyledUpdateButton
             onClick={() => {
-              updateExistingListItem(updateTodoList, listItem, editText);
+              handleUpdate(listItem.id);
               onClickEditUpdateToggle(setIsEditing, "update");
             }}
           >
@@ -51,9 +75,7 @@ export default function TodoItem({
           >
             Edit
           </StyledEditButton>
-          <StyledDeleteButton
-            onClick={() => deleteListItem(updateTodoList, listItem)}
-          >
+          <StyledDeleteButton onClick={() => handleDeleteListItem(listItem.id)}>
             Delete
           </StyledDeleteButton>
         </>

@@ -6,11 +6,28 @@ import {
   StyledAddNewListItemButton,
   StyledBoxDiv,
 } from "./styled";
-import { I_TodoFormProps } from "./types";
-import { handleAddNewListItem } from "./helper";
+import { addNewListItem } from "../../../../lib/reducers/todo/actions/todoActios";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function TodoListForm({ updateTodoList }: I_TodoFormProps) {
+export default function TodoListForm() {
   const [newListItem, setNewListItem] = useState("");
+  const dispatch = useDispatch();
+  const { data, isLoading } = useSelector((state: any) => state.todo);
+
+  const handleAddNewListItem = () => {
+    if (!newListItem.trim()) return;
+
+    const newTodo = {
+      id: data.length + 1,
+      title: newListItem,
+      completed: "In-progress",
+    };
+
+    dispatch(addNewListItem(newTodo));
+    setNewListItem("");
+  };
+
+  console.log(isLoading);
 
   return (
     <StyledBoxDiv>
@@ -19,11 +36,7 @@ export default function TodoListForm({ updateTodoList }: I_TodoFormProps) {
         value={newListItem}
         onChange={(e) => setNewListItem(e.target.value)}
       />
-      <StyledAddNewListItemButton
-        onClick={() =>
-          handleAddNewListItem(newListItem, updateTodoList, setNewListItem)
-        }
-      >
+      <StyledAddNewListItemButton onClick={handleAddNewListItem}>
         Add
       </StyledAddNewListItemButton>
     </StyledBoxDiv>
