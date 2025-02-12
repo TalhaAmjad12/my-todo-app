@@ -1,26 +1,25 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import TodoList from "./components/todo-list";
 import TodoListForm from "./components/todo-form";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTodos } from "../../lib/reducers/todo/actions/todoActios";
+import { fetchTodos } from "../../lib/reducers/todo/actions/todoActions";
+import { TListItem } from "./types";
 
 export default function Todo() {
-  const [todoList, setTodos] = useState([]);
-
   const dispatch = useDispatch();
-  const { data, error } = useSelector((state: any) => state.todo);
+  const { data: todoListData }: TListItem = useSelector(
+    (state: any) => state.todo
+  );
 
   useEffect(() => {
     dispatch(fetchTodos() as any);
   }, [dispatch]);
 
-  console.log(data, error, "redux implementation data");
-
   return (
     <div>
-      <TodoList todoList={data} updateTodoList={setTodos} />
+      <TodoList todoList={todoListData} />
       <TodoListForm />
     </div>
   );

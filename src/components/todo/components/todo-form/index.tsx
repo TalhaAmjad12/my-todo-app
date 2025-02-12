@@ -6,7 +6,7 @@ import {
   StyledAddNewListItemButton,
   StyledBoxDiv,
 } from "./styled";
-import { addNewListItem } from "../../../../lib/reducers/todo/actions/todoActios";
+import { addNewListItem } from "../../../../lib/reducers/todo/actions/todoActions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function TodoListForm() {

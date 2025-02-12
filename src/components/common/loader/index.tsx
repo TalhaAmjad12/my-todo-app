@@ -1,12 +1,10 @@
 import React from "react";
-import { StyledLoaderWrapper, StyledLoader } from "../loader/styled";
+import { StyledLoaderWrapper, StyledLoader } from "./styled";
 
-const CustomLoader = ({ position = "center" }) => {
+export default function CustomLoader({ position = "center" }: any) {
   return (
     <StyledLoaderWrapper position={position}>
       <StyledLoader />
     </StyledLoaderWrapper>
   );
-};
-
-export default CustomLoader;
+}

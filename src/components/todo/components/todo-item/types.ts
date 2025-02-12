@@ -17,5 +17,4 @@ export type T_ListItem = {
 
 export interface I_TodoItemProps {
   listItem: T_ListItem;
-  updateTodoList: Dispatch<SetStateAction<string>>;
 }

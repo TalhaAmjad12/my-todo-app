@@ -15,13 +15,10 @@ import { useDispatch } from "react-redux";
 import {
   deleteListItem,
   updateListItemById,
-} from "../../../../lib/reducers/todo/actions/todoActios";
+} from "../../../../lib/reducers/todo/actions/todoActions";
 import CustomLoader from "../../../common/loader/index";
 
-export default function TodoItem({
-  listItem,
-  updateTodoList,
-}: I_TodoItemProps) {
+export default function TodoItem({ listItem }: I_TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(listItem.title);
   const dispatch = useDispatch();

@@ -5,10 +5,7 @@ import TodoItem from "../todo-item";
 import { I_TodoListProps } from "./types";
 import { StyledUnorderedList } from "./styled";
 
-export default function TodoList({
-  todoList,
-  updateTodoList,
-}: I_TodoListProps) {
+export default function TodoList({ todoList }: I_TodoListProps) {
   if (todoList.length === 0)
     return (
       <StyledUnorderedList>
@@ -18,14 +15,8 @@ export default function TodoList({
 
   return (
     <StyledUnorderedList>
-      {todoList.map((todo) => {
-        return (
-          <TodoItem
-            key={todo.id}
-            listItem={todo}
-            updateTodoList={updateTodoList}
-          />
-        );
+      {todoList.map((todo: { id: number }) => {
+        return <TodoItem key={todo.id} listItem={todo} />;
       })}
     </StyledUnorderedList>
   );
