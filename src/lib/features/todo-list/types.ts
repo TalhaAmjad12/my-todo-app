@@ -5,5 +5,7 @@ export type T_todoItem = {
 };
 
 export interface I_initialState {
-  todoListData: [T_todoItem];
+  data: [T_todoItem];
+  isLoading: boolean;
+  error: {};
 }

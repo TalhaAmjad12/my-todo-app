@@ -1,6 +1,6 @@
 import {
   updateListItem,
-  deleteItem,
+  deletefn,
 } from "../../../../lib/features/todo-list/TodoListSlice";
 
 export const onClickEditUpdateToggle = (setIsEditing, action) => {
@@ -21,6 +21,6 @@ export const updateExistingListItem = (dispatch, currentItem, editText) => {
   dispatch(updateListItem(updatedListItem));
 };
 
-export const deleteListItem = (currentItem, dispatch) => {
-  dispatch(deleteItem(currentItem.id));
+export const deleteListItem = (listItem, dispatch) => {
+  dispatch(deletefn(listItem.id));
 };

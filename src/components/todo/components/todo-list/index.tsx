@@ -6,7 +6,9 @@ import { I_TodoListProps, T_ListItem } from "./types";
 import { StyledUnorderedList } from "./styled";
 
 export default function TodoList({ todoList }: I_TodoListProps) {
-  if (todoList.length === 0) return <h1>No data Found</h1>;
+  console.log(todoList, "todoList");
+
+  if (todoList?.length === 0) return <h1>No data Found</h1>;
 
   return (
     <StyledUnorderedList>
